@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Get a Boost Mobile SIM, it&#39;s the T-Mobile variant with carrier name &quot;BSTM&quot;, it&#39;s &quot;Boost T-Mobile&quot; or &quot;BooSTMobile&quot;? To add more frustration, the exact same SIM sh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Change Carrier Name In Android With Root">
+<meta property="og:url" content="https://lucidusdev.github.io/2024/02/01/change-carrier-name-in-android-with-root/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Get a Boost Mobile SIM, it&#39;s the T-Mobile variant with carrier name &quot;BSTM&quot;, it&#39;s &quot;Boost T-Mobile&quot; or &quot;BooSTMobile&quot;? To add more frustration, the exact same SIM sh">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-02-01T20:47:13.000Z">
+<meta property="article:modified_time" content="2024-02-01T20:47:13.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2024/02/01/change-carrier-name-in-android-with-root/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2024/02/01/change-carrier-name-in-android-with-root/","path":"2024/02/01/change-carrier-name-in-android-with-root/","title":"Change Carrier Name In Android With Root"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Change Carrier Name In Android With Root | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Shizuku"><span class="nav-number">1.</span> <span class="nav-text">With Shizuku</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Root-Failed-Attempt"><span class="nav-number">2.</span> <span class="nav-text">With Root: Failed Attempt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#With-Root-Working-Solution"><span class="nav-number">3.</span> <span class="nav-text">With Root Working Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus-hack-Display-ICCID-in-Settings"><span class="nav-number">4.</span> <span class="nav-text">Bonus hack: Display ICCID in Settings</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2024/02/01/change-carrier-name-in-android-with-root/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Change Carrier Name In Android With Root | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Change Carrier Name In Android With Root
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-02-01 12:47:13" itemprop="dateCreated datePublished" datetime="2024-02-01T12:47:13-08:00">2024-02-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Get a Boost Mobile SIM, it&#39;s the T-Mobile variant with carrier name &quot;BSTM&quot;, it&#39;s &quot;Boost T-Mobile&quot; or &quot;BooSTMobile&quot;? To add more frustration, the exact same SIM shows &quot;Boost&quot; on iPhone. </p>
+<p>I usually don&#39;t care much about carrier name displayed but they should really come up with something at least better than this BS™.</p>
+<span id="more"></span>
+
+<h2 id="With-Shizuku"><a href="#With-Shizuku" class="headerlink" title="With Shizuku"></a>With Shizuku</h2><p>A quick search found this nice <a target="_blank" rel="noopener" href="https://github.com/nullbytepl/CarrierVanityName"><strong>CarrierVanityName</strong> on github</a>. Pretty cool as it doesn&#39;t require root but <a target="_blank" rel="noopener" href="https://shizuku.rikka.app/">Shizuku</a> instead. </p>
+<p>Can stop here if you have Shizuku or don&#39;t mind trying it.</p>
+<h2 id="With-Root-Failed-Attempt"><a href="#With-Root-Failed-Attempt" class="headerlink" title="With Root: Failed Attempt"></a>With Root: Failed Attempt</h2><p>The phone is already rooted and I don&#39;t want to bother with Shizuku, so I tried to get it work with root. Turns out it&#39;s not that easy. Checking the source code, it set </p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p.putBoolean(CarrierConfigManager.KEY_CARRIER_NAME_OVERRIDE_BOOL, <span class="literal">true</span>)</span><br><span class="line">p.putString(CarrierConfigManager.KEY_CARRIER_NAME_STRING, text)</span><br></pre></td></tr></table></figure>
+
+<p>which, translated to <code>carrier_name_override_bool</code> and <code>carrier_name_string</code>.</p>
+<p>Searching these keywords landed to <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/72e24721f126">this guide</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell cmd phone cc set-value -p carrier_name_string &quot;T-Mobile&quot; </span><br><span class="line">adb shell cmd phone cc set-value -p carrier_name_override_bool true</span><br></pre></td></tr></table></figure>
+
+<p>Unfortunately(obviously) it doesn&#39;t work. The first line <code>adb root</code> already gives a good hint because</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;adb root</span><br><span class="line">adbd cannot run as root in production builds</span><br></pre></td></tr></table></figure>
+
+<p>Now things get interesting: running the lines directly as root also fails.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cmd phone cc set-value -p carrier_name_string &quot;T-Mobile&quot;</span><br><span class="line">cc: Permission denied.</span><br></pre></td></tr></table></figure>
+
+<p>Well, it&#39;s all in <a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/packages/services/Telephony/+/master/src/com/android/phone/TelephonyShellCommand.java#1033">source code</a>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Verify that the user is allowed to run the command. Only allowed in rooted device in a</span></span><br><span class="line"><span class="comment">// non user build.</span></span><br><span class="line"><span class="keyword">if</span> (Binder.getCallingUid() != Process.ROOT_UID || TelephonyUtils.IS_USER) &#123;</span><br><span class="line">    errPw.println(<span class="string">&quot;cc: Permission denied.&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="With-Root-Working-Solution"><a href="#With-Root-Working-Solution" class="headerlink" title="With Root Working Solution"></a>With Root Working Solution</h2><p>There&#39;re some old guides about editing <code>apn-conf.xml</code> -- so old that &#x2F;system was even supposed to be R&#x2F;W. Some more search finds <a target="_blank" rel="noopener" href="https://xdaforums.com/t/howto-root-display-correct-4g-icons-in-statusbar-on-lte-network-with-missing-config.4367299/">this</a>. It&#39;s about changing 4G symbols, however the xml file can be used to do the carrier name override.</p>
+<ol>
+<li><p>Find the file, it&#39;s under</p>
+<p><code> /data/user_de/0/com.android.phone/files</code></p>
+<p>in my phone. </p>
+<p>There may be multi files in this folder, for all SIM cards ever used in the  phone, as</p>
+<p><code>carrierconfig-com.google.android.carrier-ICCID-CarrierID.xml</code></p>
+<p>So to match the current SIM card, one can pull the card and check the numbers on the back, or, dial <code>*#*#4636#*#*</code> , find &quot;IMSI&quot; under &quot;Phone Information&quot;, the &quot;IMSI&quot; is a partial match to ICCID, should be enough to locate the xml.</p>
+</li>
+<li><p>Edit the file, with either vi&#x2F;nano or a rooted file explorer.</p>
+<p>Search <code>carrier_name_string</code></p>
+<p>Mine is</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;string name=&quot;carrier_name_string&quot;&gt;T-Mobile&lt;/string&gt;</span><br></pre></td></tr></table></figure>
+
+<p>or if it&#39;s missing, add a new line. Change the value:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;string name=&quot;carrier_name_string&quot;&gt;Boost&lt;/string&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Also, search <code>carrier_name_override_bool</code></p>
+<p>set it to &quot;true&quot;.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;boolean name=&quot;carrier_name_override_bool&quot; value=&quot;true&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Save the file.</p>
+<p>To add line(s), put them before the ending <code>&lt;/bundle&gt;</code> line.</p>
+</li>
+<li><p>To make the change take effect, reboot the phone or run</p>
+<p><code>su -c pkill -TERM -f com.android.phone</code></p>
+<p>In my Android 11, the change is <strong>semi-permanent</strong>, surviving both SIM card removal&#x2F;install and reboot. If it doesn&#39;t stick during reboot, a possible (untested) solution is to add a Magisk bootup script in <code>/data/adb/service.d</code>, and do the override.</p>
+</li>
+</ol>
+<h2 id="Bonus-hack-Display-ICCID-in-Settings"><a href="#Bonus-hack-Display-ICCID-in-Settings" class="headerlink" title="Bonus hack: Display ICCID in Settings"></a>Bonus hack: Display ICCID in Settings</h2><p>The xml is used for all kinds of settings, field names and their meaning can be found in <a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/telephony/java/android/telephony/CarrierConfigManager.java">source code</a>.</p>
+<p>Set <code>show_iccid_in_sim_status_bool</code> to true.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Flag specifying whether ICCID is showed in SIM Status screen, default to false.</span><br><span class="line"> */</span><br><span class="line">public static final String KEY_SHOW_ICCID_IN_SIM_STATUS_BOOL = &quot;show_iccid_in_sim_status_bool&quot;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Some phone has it already, mine isn&#39;t. Using</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;boolean name=&quot;show_iccid_in_sim_status_bool&quot; value=&quot;true&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>to display ICCID in SIM status menu. This can be helpful as recent Android versions block ICCID reading from user apps.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/" rel="prev" title="Patch Youtube Music to Remove Fullscreen Lockscreen Cover">
+                  <i class="fa fa-angle-left"></i> Patch Youtube Music to Remove Fullscreen Lockscreen Cover
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/23/two-google-voice-number-to-same-phone/" rel="next" title="Two Google Voice Number to Same Phone">
+                  Two Google Voice Number to Same Phone <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

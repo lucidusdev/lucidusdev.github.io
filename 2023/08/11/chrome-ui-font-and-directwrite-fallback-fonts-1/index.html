@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Chrome从几年前的52版本开始全面使用DirectWrite，弃用GDI。页面字体没问题，但是英文界面的Chrome（和Edge），就相当惨烈。  注意看上图：  网页渲染完全正确 地址栏和标签页：同样的“门”字，用了两个不同的字体渲染，其中框上一短竖是日文写法。“热”字也有问题，用的是微软正黑体，显示在标签页上很明显：小一号。  这个问题只出现在英文界面的Chrome（可能还得是英文Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【折腾】Directwrite fallback和Chrome界面字体--上">
+<meta property="og:url" content="https://lucidusdev.github.io/2023/08/11/chrome-ui-font-and-directwrite-fallback-fonts-1/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Chrome从几年前的52版本开始全面使用DirectWrite，弃用GDI。页面字体没问题，但是英文界面的Chrome（和Edge），就相当惨烈。  注意看上图：  网页渲染完全正确 地址栏和标签页：同样的“门”字，用了两个不同的字体渲染，其中框上一短竖是日文写法。“热”字也有问题，用的是微软正黑体，显示在标签页上很明显：小一号。  这个问题只出现在英文界面的Chrome（可能还得是英文Wind">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/chrome-ui-font-and-directwrite-fallback-fonts-1/chrome-ui-eng.png">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/chrome-ui-font-and-directwrite-fallback-fonts-1/chrome-ui-kaiti.png">
+<meta property="article:published_time" content="2023-08-11T21:58:56.000Z">
+<meta property="article:modified_time" content="2023-08-12T21:58:56.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lucidusdev.github.io/pics/imgs.md/chrome-ui-font-and-directwrite-fallback-fonts-1/chrome-ui-eng.png">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2023/08/11/chrome-ui-font-and-directwrite-fallback-fonts-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2023/08/11/chrome-ui-font-and-directwrite-fallback-fonts-1/","path":"2023/08/11/chrome-ui-font-and-directwrite-fallback-fonts-1/","title":"【折腾】Directwrite fallback和Chrome界面字体--上"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【折腾】Directwrite fallback和Chrome界面字体--上 | Random Bits...</title><meta name="robots" content="noindex">
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Good-old-GDI-Fontlink"><span class="nav-number">1.</span> <span class="nav-text">Good old GDI &amp; Fontlink...</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DirectWrite%E8%A7%84%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">DirectWrite规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8C%9C%E7%8C%9C%E7%8C%9C"><span class="nav-number">3.</span> <span class="nav-text">猜猜猜</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-UI%E5%AD%97%E4%BD%93%E4%BF%AE%E6%94%B9"><span class="nav-number">4.</span> <span class="nav-text">Chrome UI字体修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DirectWrite%E4%BF%AE%E6%94%B9"><span class="nav-number">5.</span> <span class="nav-text">DirectWrite修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E4%BB%A5%E6%B0%B8%E6%B2%BB%EF%BC%9F"><span class="nav-number">5.1.</span> <span class="nav-text">割以永治？</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2023/08/11/chrome-ui-font-and-directwrite-fallback-fonts-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="【折腾】Directwrite fallback和Chrome界面字体--上 | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【折腾】Directwrite fallback和Chrome界面字体--上
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-08-11 14:58:56" itemprop="dateCreated datePublished" datetime="2023-08-11T14:58:56-07:00">2023-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-08-12 14:58:56" itemprop="dateModified" datetime="2023-08-12T14:58:56-07:00">2023-08-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Chrome从几年前的52版本开始全面使用DirectWrite，弃用GDI。页面字体没问题，但是英文界面的Chrome（和Edge），就相当惨烈。</p>
+<p><img src="/pics/imgs.md/chrome-ui-font-and-directwrite-fallback-fonts-1/chrome-ui-eng.png" alt="chrome-ui-eng"></p>
+<p>注意看上图：</p>
+<ul>
+<li>网页渲染完全正确</li>
+<li>地址栏和标签页：同样的“门”字，用了两个不同的字体渲染，其中框上一短竖是日文写法。“热”字也有问题，用的是微软正黑体，显示在标签页上很明显：小一号。</li>
+</ul>
+<p>这个问题只出现在英文界面的Chrome（可能还得是英文Windows系统？），如果Chrome界面语言改成中文，字体是完全正常的Segoe UI英文+雅黑中文。</p>
+<p>在网上搜到的解决办法一般是改注册表的<code>FontLink</code>，可惜这是GDI的老黄历了——先进的DirectWrite表示：<a target="_blank" rel="noopener" href="https://www.unicode.org/mail-arch/unicode-ml/y2013-m07/0068.html">不要你觉得只要我觉得</a>……虽然DirectWrite很体贴的提供了设置fallback的函数，然而它的<strong>默认</strong>fallback是用户不可改的，什么注册表配置文件都不认。现状是绝大多数用directwrite的都不提供额外fallback设置，包括很多编辑器 --不满意要么用一个中英文组合“编程字体”要么滚回GDI--好在能有选项的一般都能凑合。所以Chrome&#x2F;Edge的界面就是最明显的灾区。</p>
+<span id="more"></span>
+
+<p><sub>目前，Windows的传统界面仍是GDI，而绝大多数程序，哪怕用到DirectWrite，标题栏菜单栏还是Windows（使用GDI）负责，所以并没有界面字体的问题。而Chrome的整个UI都是自己绘制的。</sub></p>
+<h2 id="Good-old-GDI-Fontlink"><a href="#Good-old-GDI-Fontlink" class="headerlink" title="Good old GDI &amp; Fontlink..."></a>Good old GDI &amp; Fontlink...</h2><p>GDI比较简单，使用注册表内的Fontlink决定：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontLink\SystemLink</span><br></pre></td></tr></table></figure>
+
+
+
+<p>当修改Windows内<code>language for non-unicode programs</code>设置时，这项会对应修改。所以有个方法是，把这项修改成中文，导出注册表；改回英文，再导入中文环境下备份的注册表。这样就实现了“全英文”环境下正确显示中文，没有字体大大小小的问题。</p>
+<h2 id="DirectWrite规则"><a href="#DirectWrite规则" class="headerlink" title="DirectWrite规则"></a>DirectWrite规则</h2><p>DirectWrite内置了针对不同语言的不同fallback规则。当语言为英文+使用英文字体时，顺序为</p>
+<ol>
+<li><code>Yu Gothic UI</code> 游黑体（日文）</li>
+<li><code>Microsoft JHengHei UI</code> 正黑体（繁中）</li>
+<li><code>Microsoft Yahei</code> 雅黑（简中）</li>
+</ol>
+<p>实际中看起来Directwrite还会根据上下文来决定，造成两个“门”字渲染不一样。</p>
+<p>而即便在英文系统中，如果代码&#x2F;设置正确，简中还是能先回落到雅黑。</p>
+<p>最后，网上有人说中文Windows的默认规则还不一样（未测试，存疑）？英文系统专有的坑？？</p>
+<h2 id="猜猜猜"><a href="#猜猜猜" class="headerlink" title="猜猜猜"></a>猜猜猜</h2><p>上段说“语言为英文”，那么这个“语言”到底哪里定义的？</p>
+<p>DirectWrite中，如果使用<code>CreateTextFormat</code>设置字体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pDWriteFactory-&gt;<span class="built_in">CreateTextFormat</span>(</span><br><span class="line">            <span class="string">L&quot;Consolas&quot;</span>, <span class="comment">// Font family name.</span></span><br><span class="line">            <span class="literal">NULL</span>,        <span class="comment">// Font collection (NULL to use the system font collection).</span></span><br><span class="line">            DWRITE_FONT_WEIGHT_REGULAR,</span><br><span class="line">            DWRITE_FONT_STYLE_NORMAL,</span><br><span class="line">            DWRITE_FONT_STRETCH_NORMAL,</span><br><span class="line">            <span class="built_in">ceilf</span>(<span class="built_in">ConvertPointSizeToDIP</span>(<span class="number">10</span>)),</span><br><span class="line">            <span class="string">L&quot;zh-cn&quot;</span>,  <span class="comment">//locale name</span></span><br><span class="line">            &amp;pTextFormat);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>经测试：在英文系统中，使用不含中文的<code>Consolas</code>字体，默认fallback规则。如果把语言设为<code>zh-cn</code>，那么显示是完全正确的，中文回落到雅黑。如果设为<code>en-us</code> 就会复现Chrome的错误结果。一个app是怎么设定这个参数呢？</p>
+<p>理想情况当然是开放给用户，然而反正我没见过……最简单的是留空或者写<code>en-us</code>，再好一点可能用<code>GetUserDefaultUILanguage </code> 或者<code>GetSystemDefaultLocaleName</code>。前者取&quot;Region Format&quot;即&quot;区域格式&quot;，后者取&quot;language for non-unicode programs&quot;的设置。具体该用哪个说法不一。大聪明当属Chrome：用选定的UI语言，有问题也是用户自找的……</p>
+<p>另外一个例子是Notepad2和Notepad3，同样基于Scintilla，Notepad2用<code>GetUserDefaultUILanguage</code>，结果就是在英文系统上哪怕中文版也有显示问题；Notepad3则类似Chrome，遵从UI语言设置。</p>
+<p>总之，GDI时代，注册表对了就对了，到了DirectWrite，变成了应用和用户两边猜谜。</p>
+<p>所以，<strong>怎么保证在<code>en-us</code>（或其他非CJK语言），也能回落到雅黑？</strong></p>
+<h2 id="Chrome-UI字体修改"><a href="#Chrome-UI字体修改" class="headerlink" title="Chrome UI字体修改"></a>Chrome UI字体修改</h2><p>对Chrome，最直接的想法是UI改用中文字体，不折腾fallback了。有点麻烦但是可行。在<a target="_blank" rel="noopener" href="https://source.chromium.org/chromium/chromium/src/+/main:ui/base/l10n/l10n_util_win.cc;l=73">chromium的源码</a>中找到了下面这段</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AdjustUiFont</span><span class="params">(gfx::win::FontAdjustment&amp; font_adjustment)</span> </span>&#123;</span><br><span class="line">  <span class="comment">// This is rather simple-minded to deal with the UI font size issue for some</span></span><br><span class="line">  <span class="comment">// Indian locales (ml, bn, hi) for which/ the default Windows fonts are too</span></span><br><span class="line">  <span class="comment">// small to be legible.  For those locales, IDS_UI_FONT_FAMILY is set to an</span></span><br><span class="line">  <span class="comment">// actual font family to use, while for other locales, it&#x27;s set to &quot;default&quot;.</span></span><br><span class="line">  std::wstring ui_font_family = <span class="built_in">GetWideString</span>(IDS_UI_FONT_FAMILY);</span><br><span class="line">  <span class="keyword">if</span> (!ui_font_family.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">    <span class="type">int</span> scaler;</span><br><span class="line">    <span class="keyword">if</span> (base::<span class="built_in">StringToInt</span>(l10n_util::<span class="built_in">GetStringUTF16</span>(IDS_UI_FONT_SIZE_SCALER),</span><br><span class="line">                          &amp;scaler)) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="type">const</span> <span class="type">bool</span> is_custom = ui_font_family != <span class="string">L&quot;default&quot;</span>;</span><br><span class="line">          is_custom || scaler != <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (is_custom) &#123;</span><br><span class="line">          font_adjustment.font_family_override.<span class="built_in">swap</span>(ui_font_family);</span><br><span class="line">        &#125;</span><br><span class="line">        font_adjustment.font_scale = scaler / <span class="number">100.0</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  font_adjustment.font_scale *= display::win::<span class="built_in">GetAccessibilityFontScale</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果界面字体为<code>default</code>则使用系统默认字体。这项本来是给某些印度语留着的但是可以借用。而且，这些资源文件不受sandbox保护。方法：</p>
+<p>用<a target="_blank" rel="noopener" href="https://github.com/myfreeer/chrome-pak-customizer">pak工具</a> 解压<code>Locales</code>目录下<code>en-US.pak</code>文件（<strong>先备份</strong>！），打开<code>240</code> 文件，默认内容为<code>default</code>，改成比如<code>Microsoft Yahei</code>。<code>241</code>是字体大小缩放比例，默认100表示100%。240、241这个序号不一定，可以用<code>findstr</code>找一下。改完后打包替代原<code>en-US.pak</code>。字体修改影响菜单、标签页、地址栏，而缩放只影响前两个，不影响地址栏字体大小。</p>
+<p>缺点是Chrome每次更新都得改，好处是可以换一些奇奇怪怪的字体。比如：</p>
+<p><img src="/pics/imgs.md/chrome-ui-font-and-directwrite-fallback-fonts-1/chrome-ui-kaiti.png" alt="chrome-ui-kaiti"></p>
+<h2 id="DirectWrite修改"><a href="#DirectWrite修改" class="headerlink" title="DirectWrite修改"></a>DirectWrite修改</h2><p>上面的只适用于Chrome（也许还有Edge？），因为它碰巧有修改界面字体的方法。</p>
+<p>其他程序的DirectWrite怎么办呢？</p>
+<p>再重复一次，注册表里面的<code>Fontlink</code>不顶用。</p>
+<h3 id="割以永治？"><a href="#割以永治？" class="headerlink" title="割以永治？"></a>割以永治？</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/502139239">知乎上找到的暴力法</a>：既然有字体插队，删掉不就行了？实测韩文字体好像可以留着，日文和繁中需要去掉。导入下面注册表后注销一次。问题就是繁体、日文页面显示的<del>比较</del>相当糟。</p>
+<p><strong>删除字体</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts]</span><br><span class="line">&quot;Microsoft JhengHei &amp; Microsoft JhengHei UI (TrueType)&quot;=-</span><br><span class="line">&quot;Microsoft JhengHei Bold &amp; Microsoft JhengHei UI Bold (TrueType)&quot;=-</span><br><span class="line">&quot;Microsoft JhengHei Light &amp; Microsoft JhengHei UI Light (TrueType)&quot;=-</span><br><span class="line">&quot;Yu Gothic Bold &amp; Yu Gothic UI Semibold &amp; Yu Gothic UI Bold (TrueType)&quot;=-</span><br><span class="line">&quot;Yu Gothic Light &amp; Yu Gothic UI Light (TrueType)&quot;=-</span><br><span class="line">&quot;Yu Gothic Medium &amp; Yu Gothic UI Regular (TrueType)&quot;=-</span><br><span class="line">&quot;Yu Gothic Regular &amp; Yu Gothic UI Semilight (TrueType)&quot;=-</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>恢复字体</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts]</span><br><span class="line">&quot;Microsoft JhengHei &amp; Microsoft JhengHei UI (TrueType)&quot;=&quot;msjh.ttc&quot;</span><br><span class="line">&quot;Microsoft JhengHei Bold &amp; Microsoft JhengHei UI Bold (TrueType)&quot;=&quot;msjhbd.ttc&quot;</span><br><span class="line">&quot;Microsoft JhengHei Light &amp; Microsoft JhengHei UI Light (TrueType)&quot;=&quot;msjhl.ttc&quot;</span><br><span class="line">&quot;Yu Gothic Bold &amp; Yu Gothic UI Semibold &amp; Yu Gothic UI Bold (TrueType)&quot;=&quot;YuGothB.ttc&quot;</span><br><span class="line">&quot;Yu Gothic Light &amp; Yu Gothic UI Light (TrueType)&quot;=&quot;YuGothL.ttc&quot;</span><br><span class="line">&quot;Yu Gothic Medium &amp; Yu Gothic UI Regular (TrueType)&quot;=&quot;YuGothM.ttc&quot;</span><br><span class="line">&quot;Yu Gothic Regular &amp; Yu Gothic UI Semilight (TrueType)&quot;=&quot;YuGothR.ttc&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><em>未完待续...</em></p>
+<!-- flag of hidden posts -->
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/windows/" rel="tag"><i class="fa fa-tag"></i> windows</a>
+          </div>
+
+        
+
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

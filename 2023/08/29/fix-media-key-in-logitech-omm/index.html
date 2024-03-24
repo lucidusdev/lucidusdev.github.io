@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Logitech&#39;s OMM(onboard memory manager) is originally designed for pro-gamer, but many use it as a replacement for G-HUB. The OMM itself is fully portable: one single file, don&#39;t write anything">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fix Media Key in Logitech OMM(onboard memory manager)">
+<meta property="og:url" content="https://lucidusdev.github.io/2023/08/29/fix-media-key-in-logitech-omm/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Logitech&#39;s OMM(onboard memory manager) is originally designed for pro-gamer, but many use it as a replacement for G-HUB. The OMM itself is fully portable: one single file, don&#39;t write anything">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/consumer-page.png">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/hid-code.png">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/short-report.png">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/usage-report.png">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/omm-lgs.png">
+<meta property="article:published_time" content="2023-08-29T06:37:47.000Z">
+<meta property="article:modified_time" content="2023-09-29T06:37:47.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lucidusdev.github.io/pics/imgs.md/fix-media-key-in-logitech-omm/consumer-page.png">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2023/08/29/fix-media-key-in-logitech-omm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2023/08/29/fix-media-key-in-logitech-omm/","path":"2023/08/29/fix-media-key-in-logitech-omm/","title":"Fix Media Key in Logitech OMM(onboard memory manager)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Fix Media Key in Logitech OMM(onboard memory manager) | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Problem"><span class="nav-number">1.</span> <span class="nav-text">The Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Specs"><span class="nav-number">1.1.</span> <span class="nav-text">The Specs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-bug"><span class="nav-number">1.2.</span> <span class="nav-text">The bug</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-fix"><span class="nav-number">2.</span> <span class="nav-text">The fix</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2023/08/29/fix-media-key-in-logitech-omm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Fix Media Key in Logitech OMM(onboard memory manager) | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fix Media Key in Logitech OMM(onboard memory manager)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-08-28 23:37:47" itemprop="dateCreated datePublished" datetime="2023-08-28T23:37:47-07:00">2023-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-09-28 23:37:47" itemprop="dateModified" datetime="2023-09-28T23:37:47-07:00">2023-09-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://support.logi.com/hc/en-us/articles/360059641133">Logitech&#39;s OMM</a>(onboard memory manager) is originally designed for pro-gamer, but many use it as a replacement for G-HUB. The OMM itself is fully portable: one single file, don&#39;t write anything to system, don&#39;t run in background and can be fully unloaded once finishing setup -- exactly what a software should be.</p>
+<p>However there is a bug in OMM as it can&#39;t set media keys -- volume adjust, mute, pause... -- properly. There&#39;re some reports(<a target="_blank" rel="noopener" href="https://www.reddit.com/r/LogitechG/comments/w8km52/onboard_memory_manager_and_media_keys/">1.</a> <a target="_blank" rel="noopener" href="https://www.reddit.com/r/LogitechG/comments/zgv78q/media_keys_assignments_not_working_in_onboad/">2.</a>) on reddit but only got useless canned response from Logitech.  A walkaround is to use G-HUB to set the media keys and OMM for the rest, but it&#39;s annoying.</p>
+<p>Update: there is a new version 2.0.1639 released on 9&#x2F;5&#x2F;23, different interface same bug.  The article is based on an old version but applies to both.</p>
+<span id="more"></span>
+
+<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>This is based on Logitech OMM, Ver 1.1.6805 released on 6&#x2F;1&#x2F;22, <del>latest as of writing.</del></p>
+<p>The onboard memory can be set through LGS(if the mouse supports) or G-HUB, both set the media keys correctly. However a <em>properly</em> setup media key will just show <kbd>Media Key</kbd> in OMM instead of actual key name. If the key is set through OMM, then it wouldn&#39;t work at all.</p>
+<p>With the help of <code>usbhid-dump</code> utility in Linux, I was able to get some insights.</p>
+<p>run <code>usbhid-dump -e stream</code> to dump raw USB:</p>
+<p>To compare, for <kbd>Volume Down</kbd>:</p>
+<p>from good working LGS:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">03 EA 00 00 00</span><br><span class="line">03 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p>non-working OMM:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">03 EA 0C 00 00</span><br><span class="line">03 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p>OMM is sending different code than others, but why the code and why it fails?</p>
+<h3 id="The-Specs"><a href="#The-Specs" class="headerlink" title="The Specs"></a>The Specs</h3><p>Know little about USB but a quick search found <a target="_blank" rel="noopener" href="https://www.usb.org/sites/default/files/hut1_3_0.pdf">the USB HID PDF</a>. On p.126, as show below, <kbd>Volume Down</kbd> has code <code>0xEA</code>(usage id) in &quot;Consumer page&quot;(<code>0x0C</code>). <img src="/pics/imgs.md/fix-media-key-in-logitech-omm/consumer-page.png" alt="consumer-page"></p>
+<p><img src="/pics/imgs.md/fix-media-key-in-logitech-omm/hid-code.png" alt="hid-code"></p>
+<p><code>0xEA</code> is usage id and <code>0x0C</code> is the usage page, OMM sends both(<code>03 EA 0C 00 00</code>), looks good? On the other hand, LGS sends <code>0xEA</code> , the usage id only, and missing usage page(<code>03 EA 00 00 00</code>) -- looks wrong but it&#39;s working.</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.usb.org/sites/default/files/documents/hid1_11.pdf">On another PDF p.36</a> the 5 bytes data is a &quot;short item&quot;.</p>
+<p><img src="/pics/imgs.md/fix-media-key-in-logitech-omm/short-report.png" alt="short-report"></p>
+<p>Here <code>03</code> means there&#39;re 4 bytes data following(<code>03 EA 0C 00 00</code>) which matches the usb dump.</p>
+<p>Back to first PDF, p. 20, on how to decode the data:</p>
+<p><img src="/pics/imgs.md/fix-media-key-in-logitech-omm/usage-report.png" alt="usage-report"></p>
+<hr>
+<h3 id="The-bug"><a href="#The-bug" class="headerlink" title="The bug"></a>The bug</h3><p>So for <code>03 EA 0C 00 00</code>, since <code>03</code> means 4 bytes data, and per the spec, the lower 2 bytes are usage id and higher 2 bytes are usage page, i.e., both take 2 bytes, so OMM should send <code>03 EA 00 0C 00</code> !!! As OMM sending <code>03 EA 0C 00 00</code>,  <code>EA 0C</code>(<code>0xCEA</code> ) becomes the usage id, obviously this wouldn&#39;t work. And when configured from LGS, the usage id is <code>0xEA</code>, but OMM expecting  <code>0xCEA</code> for  <kbd>Volume Down</kbd> display, thus it will show a general <kbd>Media Key</kbd>.</p>
+<p>Since <code>03 EA 00 00 00</code> is the correct data, looks like we must <strong>set the correct usage id while the usage page can be 0,</strong> this makes sense because for short item with 1 or 2 bytes data, only usage id is sent and usage page is ignored, maybe the usage page is set&#x2F;sent elsewhere? I didn&#39;t go further, as <code>03 EA 00 00 00</code> from LGS works, the OMM can be modified to match it.</p>
+<h2 id="The-fix"><a href="#The-fix" class="headerlink" title="The fix"></a>The fix</h2><p>I hate to post this as OMM isn&#39;t open source.....the OMM binary can be modified with <a target="_blank" rel="noopener" href="https://github.com/dnSpyEx/dnSpy">dnSpy</a>. Change 3 places:</p>
+<ol>
+<li><p><code>OnboardMemoryManager.Helpers</code>-&gt;<code>HIDConsumperDevice</code>-&gt;<code>HIDConsumerDevice()</code></p>
+<p>dnSpy shows:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.LocalizedHIDScanCode(<span class="string">&quot;Action_Consumer_Key_Next_Track&quot;</span>, <span class="number">0xC</span>, <span class="number">0xB5</span>, <span class="number">0xE019</span>),</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.LocalizedHIDScanCode(<span class="string">&quot;Action_Consumer_Key_Previous_Track&quot;</span>, <span class="number">0xC</span>, <span class="number">0xB6</span>, <span class="number">0xE010</span>),</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.SystemHIDScanCode(<span class="string">&quot;Stop&quot;</span>, <span class="number">0xC</span>, <span class="number">0xB7</span>, <span class="number">0xE024</span>),</span><br><span class="line">...................</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.SystemHIDScanCode(<span class="string">&quot;WWW Forward&quot;</span>, <span class="number">0xC</span>, <span class="number">0x225</span>, <span class="number">0xE069</span>),</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.SystemHIDScanCode(<span class="string">&quot;WWW Stop&quot;</span>, <span class="number">0xC</span>, <span class="number">0x226</span>, <span class="number">0xE068</span>),</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.SystemHIDScanCode(<span class="string">&quot;WWW Refresh&quot;</span>, <span class="number">0xC</span>, <span class="number">0x227</span>, <span class="number">0xE067</span>),</span><br><span class="line">	<span class="keyword">new</span> HIDConsumerDevice.SystemHIDScanCode(<span class="string">&quot;WWW Favorites&quot;</span>, <span class="number">0xC</span>, <span class="number">0x22A</span>, <span class="number">0xE066</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Change all these <code>0xC</code>  to 0. </p>
+</li>
+<li><p><code>OnboardMemoryManager.Models</code>-&gt;<code>HIDAction</code>-&gt;<code>CONSUMER_KEYS</code></p>
+<p>Change &quot;PLAY_PAUSE&quot; &quot;MUTE&quot; &quot;NEXT_TRACK&quot;... , substract every &quot;0xC??&quot; value by 0xC00, i.e., removing leading <code>0xC</code>.</p>
+<p>For example,  &quot;VOLUME_DOWN&quot;:</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> HIDAction.CONSUMER_KEYS VOLUME_DOWN = <span class="number">0xCEA</span>;</span><br></pre></td></tr></table></figure>
+
+<p>change it to </p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">const</span> HIDAction.CONSUMER_KEYS VOLUME_DOWN = <span class="number">0xEA</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Same for the rest.</p>
+</li>
+<li><p><code>OnboardMemoryManager.Models</code>-&gt;<code>HIDActionsDefaults</code>-&gt;<code>Items</code><br>Same as above, change <code>0xCCD</code> to <code>0xCD</code>, <code>0xCB6</code> to <code>0xB6</code>...</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		<span class="keyword">new</span> HIDAction((HIDAction.CONSUMER_KEYS)<span class="number">0xCCD</span>, <span class="literal">null</span>),</span><br><span class="line">		<span class="keyword">new</span> HIDAction((HIDAction.CONSUMER_KEYS)<span class="number">0xCB6</span>, <span class="literal">null</span>),</span><br><span class="line">............</span><br><span class="line">		<span class="keyword">new</span> HIDAction((HIDAction.CONSUMER_KEYS)<span class="number">0xCEA</span>, <span class="literal">null</span>),</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Here is my modified OMM <a target="_blank" rel="noopener" href="https://mega.nz/file/N6tkECbI#jvCmGZToOMb-X_bjQobuuiuZYmBz_mVkqotvjOJcMec">V1</a>  <a target="_blank" rel="noopener" href="https://mega.nz/file/Uj90FYjT#3YHBvOUFZ9VVoqicw0Sifen5G__Ot1KiVr2x2yhj0Bs">V2</a>.  <span style="color:red">USE IT AT YOUR OWN RISK.</span> or you can always do the mod yourself.</p>
+<hr>
+<p>Modified OMM and LGS, with correct &quot;Volume UP&#x2F;Volume Down&quot;.</p>
+<p><img src="/pics/imgs.md/fix-media-key-in-logitech-omm/omm-lgs.png" alt="omm-lgs"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/windows/" rel="tag"><i class="fa fa-tag"></i> windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/08/09/hexo-and-typora-images/" rel="prev" title="Setup Hexo and Typora local images with github actions">
+                  <i class="fa fa-angle-left"></i> Setup Hexo and Typora local images with github actions
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/12/15/fullscreen-video-android-kiwi-browser/" rel="next" title="Full screen video auto landscape for Android Kiwi Browser">
+                  Full screen video auto landscape for Android Kiwi Browser <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

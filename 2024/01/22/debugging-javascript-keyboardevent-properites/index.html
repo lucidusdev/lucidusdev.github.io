@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Stumble across this bug when try to move some old code from jQuery to vanilla JS. To response &quot;Done&quot; button in text input: 1234document.querySelector(&#x27;#queryInput&#x27;).addEventListene">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debugging Javascript KeyboardEvent Properites">
+<meta property="og:url" content="https://lucidusdev.github.io/2024/01/22/debugging-javascript-keyboardevent-properites/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Stumble across this bug when try to move some old code from jQuery to vanilla JS. To response &quot;Done&quot; button in text input: 1234document.querySelector(&#x27;#queryInput&#x27;).addEventListene">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-22T04:20:14.000Z">
+<meta property="article:modified_time" content="2024-01-22T04:20:14.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2024/01/22/debugging-javascript-keyboardevent-properites/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2024/01/22/debugging-javascript-keyboardevent-properites/","path":"2024/01/22/debugging-javascript-keyboardevent-properites/","title":"Debugging Javascript KeyboardEvent Properites"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Debugging Javascript KeyboardEvent Properites | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyboardEvent"><span class="nav-number">1.</span> <span class="nav-text">KeyboardEvent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-Result"><span class="nav-number">2.</span> <span class="nav-text">Test Result</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2024/01/22/debugging-javascript-keyboardevent-properites/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Debugging Javascript KeyboardEvent Properites | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Debugging Javascript KeyboardEvent Properites
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-21 20:20:14" itemprop="dateCreated datePublished" datetime="2024-01-21T20:20:14-08:00">2024-01-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Stumble across this bug when try to move some old code from jQuery to vanilla JS.</p>
+<p>To response &quot;Done&quot; button in text input:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#queryInput&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;keydown&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123; </span><br><span class="line">   <span class="keyword">if</span> (e.<span class="property">code</span> == <span class="string">&#x27;Enter&#x27;</span>) </span><br><span class="line">      <span class="title function_">doQuery</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Old code with <code>e.which ==  13</code> works fine, as <code>e.which</code> property is depreciated, I tried to use <code>e.code</code>. This works everywhere except Android Chrome. </p>
+<h3 id="KeyboardEvent"><a href="#KeyboardEvent" class="headerlink" title="KeyboardEvent"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent">KeyboardEvent</a></h3><p>To identify a keypress with KeyboardEvent, we have:</p>
+<span id="more"></span>
+
+<ul>
+<li>keyCode</li>
+<li>which</li>
+<li>code</li>
+<li>key</li>
+</ul>
+<p> <code>keyCode</code>  and <code>which</code> are all depreciated and the later isn&#39;t even on the document page. So officially we have only <code>code</code> and <code>key</code>. And the <code>code</code> property is a tricky one.</p>
+<p><code>which</code>  and <code>keyCode</code> return a numeric value,  and they&#39;re always the same in my limited test. <code>code</code> and <code>key</code> returns different string value and <code>code</code> give some more &quot;precise&quot; result. </p>
+<p>Things get interesting with mobile device and IME.</p>
+<p>Here is the document for <code>code</code></p>
+<blockquote>
+<p>If the input device isn&#39;t a physical keyboard, but is instead a virtual keyboard or accessibility device, the returned value will be set by the browser to <strong>match as closely as possible to what would happen</strong> with a physical keyboard, to maximize compatibility between physical and virtual input devices.</p>
+</blockquote>
+<p>Or in other words, on soft keyboard , don&#39;t expect anything for <code>code</code>.</p>
+<h3 id="Test-Result"><a href="#Test-Result" class="headerlink" title="Test Result"></a>Test Result</h3><table>
+<thead>
+<tr>
+<th>PC(Windows 10) Chrome</th>
+<th>keyCode&#x2F;which</th>
+<th>code</th>
+<th>key</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A(upper case,holding shift or caps lock on)</td>
+<td>65</td>
+<td>keyA</td>
+<td>A</td>
+</tr>
+<tr>
+<td>a(lower case)</td>
+<td>65</td>
+<td>keyA</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Left Shift</td>
+<td>16</td>
+<td>ShiftLeft</td>
+<td>Shift</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>13</td>
+<td>Enter</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>Numberpad Enter</td>
+<td>13</td>
+<td>NumberpadEnter</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>A with IME*</td>
+<td>229</td>
+<td>KeyA</td>
+<td>Process</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>PC with onscreen keyboard</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Same result as hardware keyboard</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Android 11 Chrome  w&#x2F;GBoard</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A</td>
+<td>229</td>
+<td><span style="color:red">&quot;&quot;(empty string)</span></td>
+<td>Unidentified</td>
+</tr>
+<tr>
+<td>a</td>
+<td>229</td>
+<td><span style="color:red">&quot;&quot;(empty string)</span></td>
+<td>Unidentified</td>
+</tr>
+<tr>
+<td>Done</td>
+<td>13</td>
+<td><span style="color:red">&quot;&quot;(empty string)</span></td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>A with Pinyin IME*</td>
+<td>N&#x2F;A</td>
+<td>N&#x2F;A</td>
+<td>N&#x2F;A</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>iOS 17 Safari default IME</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>A</td>
+<td>65</td>
+<td>KeyA</td>
+<td>A</td>
+</tr>
+<tr>
+<td>a</td>
+<td>65</td>
+<td>KeyA</td>
+<td>a</td>
+</tr>
+<tr>
+<td>Shift</td>
+<td>16</td>
+<td>ShiftLeft</td>
+<td>Shift</td>
+</tr>
+<tr>
+<td>Done</td>
+<td>13</td>
+<td>Enter</td>
+<td>Enter</td>
+</tr>
+<tr>
+<td>A with Pinyin IME*</td>
+<td>229</td>
+<td>KeyA</td>
+<td>A</td>
+</tr>
+</tbody></table>
+<p><strong>Note:</strong> </p>
+<ul>
+<li>PC and iOS get all key events with IME. on PC, even word selection is logged(as &quot;229&#x2F;Space&quot; or &quot;229&#x2F;Digit1&quot; etc.). Nothing on Android during composing at all, and a generic <code>229/&quot;&quot;/Unidentified</code> is sent after word selection.</li>
+</ul>
+<p>Also worth noting, while <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event">keycode 229 is a special char for composing</a>, Android did a poor job handling it comparing to PC and iOS.</p>
+<p>And that&#39;s why <code>e.code == &#39;Enter&#39;</code> fails. I don&#39;t know if it&#39;s addressed in latest Android but <code>e.code</code> is definitely not a reliable way to get the key pressed. Use either <code>keyCode</code> or <code>key</code>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/15/fullscreen-video-android-kiwi-browser/" rel="prev" title="Full screen video auto landscape for Android Kiwi Browser">
+                  <i class="fa fa-angle-left"></i> Full screen video auto landscape for Android Kiwi Browser
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/" rel="next" title="Patch Youtube Music to Remove Fullscreen Lockscreen Cover">
+                  Patch Youtube Music to Remove Fullscreen Lockscreen Cover <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

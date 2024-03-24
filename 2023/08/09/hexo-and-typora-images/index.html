@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Just deployed hexo on github pages. Never used hexo before and one thing annoying me is the images in markdown. On typora I have following settings:  This works well as typora will copy images to the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup Hexo and Typora local images with github actions">
+<meta property="og:url" content="https://lucidusdev.github.io/2023/08/09/hexo-and-typora-images/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Just deployed hexo on github pages. Never used hexo before and one thing annoying me is the images in markdown. On typora I have following settings:  This works well as typora will copy images to the">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lucidusdev.github.io/pics/imgs.md/hexo-and-typora-images/typora-image.png">
+<meta property="article:published_time" content="2023-08-09T22:18:42.000Z">
+<meta property="article:modified_time" content="2023-08-09T22:18:42.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="markdown">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lucidusdev.github.io/pics/imgs.md/hexo-and-typora-images/typora-image.png">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2023/08/09/hexo-and-typora-images/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2023/08/09/hexo-and-typora-images/","path":"2023/08/09/hexo-and-typora-images/","title":"Setup Hexo and Typora local images with github actions"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Setup Hexo and Typora local images with github actions | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#behind-the-scenes"><span class="nav-number">1.1.</span> <span class="nav-text">behind the scenes...</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Put-everything-together-with-github-action"><span class="nav-number">2.</span> <span class="nav-text">Put everything together with github action</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#old-workflow"><span class="nav-number">2.1.</span> <span class="nav-text">old workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new-workflow"><span class="nav-number">2.2.</span> <span class="nav-text">new workflow:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2023/08/09/hexo-and-typora-images/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Setup Hexo and Typora local images with github actions | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Setup Hexo and Typora local images with github actions
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-08-09 15:18:42" itemprop="dateCreated datePublished" datetime="2023-08-09T15:18:42-07:00">2023-08-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Just deployed hexo on github pages. Never used hexo before and one thing annoying me is the images in markdown.</p>
+<p>On typora I have following settings:</p>
+<p><img src="/pics/imgs.md/hexo-and-typora-images/typora-image.png" alt="typora-image"></p>
+<p>This works well as typora will copy images to the relative path...and of coz it&#39;s not working with hexo.</p>
+<span id="more"></span>
+
+<p>I&#39;m new to hexo, from my (re)search, the official way is to set <code>post_asset_folder: true</code>, but the default image path is <code>./$&#123;filename&#125;</code> not my current <code>./imgs.md/$&#123;filename&#125;</code>, and, it&#39;s dumb to create an empty folder for blog post without images...</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Some quick search shows <code>hexo-asset-image</code> <a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image">plugin</a>...well, it&#39;s kinda abandoned and has bug with <code>github.io</code> --  or to be exact, the permanent link url pattern.</p>
+<p>Here is the <a target="_blank" rel="noopener" href="https://blog.iz4.cc/tutorial/2022/08/%E8%A7%A3%E5%86%B3hexo-asset-image%E5%9B%BE%E7%89%87%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E6%9B%BF%E6%8D%A2%E9%97%AE%E9%A2%98/">original idea</a> for the <code>.io</code> domain fix. Mine is slightly different as a quick dirty fix:</p>
+<ol>
+<li><p>DON&quot;T ENABLE <code>post_asset_folder</code>, i.e., keep it as <code>false</code> in <code>_config.yml</code></p>
+</li>
+<li><p>install the plugin <code>npm install hexo-asset-image --save</code></p>
+</li>
+<li><p>Modify <code>node_modules/hexo-asset-image/index.js</code>:<br>let it run regardless <code>post_asset_folder</code> settings and set <code>var link = &#39;pics/imgs.md/&#39;</code></p>
+<p>Another minor bug. Find:</p>
+<p><code>|| /^\s*\/uploads|images\//.test(src))) &#123;</code></p>
+<p>change to </p>
+<p><code>|| /^\s*\/(uploads|images)\//.test(src))) &#123;</code></p>
+<p>This regex is used to keep <code>/images/</code> <code>/uploads/</code> unchanged, however without parentheses it will also match things like <code>/path/to/some-images/images.jpg</code></p>
+</li>
+</ol>
+<h3 id="behind-the-scenes"><a href="#behind-the-scenes" class="headerlink" title="behind the scenes..."></a>behind the scenes...</h3><p>Now, with <code>hexo new test</code>, hexo will only create <code>source/_post/test.md</code> but no additional image folder, and after I insert <code>1.jpg</code>, typora puts it in <code>source/_posts/imgs.md/test/1.jpg</code>, and referred as relative path <code>./imgs.md/test/1.jpg</code>.</p>
+<p>After <code>hexo generate</code> with patched <code>hexo-asset-image</code>, the compiled html will look for<code>/pics/imgs.md/test/1.jpg</code> , which, in our local path, is <code>public/pics/imgs.md/test/1.jpg</code>.</p>
+<p>With <code>post_asset_folder</code> disabled, the whole <code>imgs.md</code> folder is ignored during <code>hexo g</code>, so we have to copy it to the  <code>public</code> folder afterwards and before final deploy.</p>
+<h2 id="Put-everything-together-with-github-action"><a href="#Put-everything-together-with-github-action" class="headerlink" title="Put everything together with github action"></a>Put everything together with github action</h2><h3 id="old-workflow"><a href="#old-workflow" class="headerlink" title="old workflow"></a>old workflow</h3><p>I use github actions to deploy the blog to github pages. Before the change, it goes like:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cd</span> <span class="string">&quot;$&#123;GITHUB_WORKSPACE&#125;&quot;</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-deployer-git</span> <span class="string">--save</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-asset-image</span> <span class="string">--save</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">deploy</span>			</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="new-workflow"><a href="#new-workflow" class="headerlink" title="new workflow:"></a>new workflow:</h3><p>In blog folder, <code>mkdir script</code>, put modified <code>index.js</code> as <code>hexo-asset-image-index.js</code> in it and create a <code>fix-hexo-image.sh</code> as below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> == <span class="string">&quot;js&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;use modified hexo-assert-image plugin&#x27;</span></span><br><span class="line">    <span class="built_in">cp</span> script/hexo-asset-image-index.js node_modules/hexo-asset-image/index.js</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> == <span class="string">&quot;pics&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;copy images from source/_posts/imgs.md to public/pics&#x27;</span></span><br><span class="line">    <span class="built_in">mkdir</span> -p public/pics/</span><br><span class="line">    <span class="built_in">cp</span> -a <span class="built_in">source</span>/_posts/imgs.md public/pics/</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>The updated workflow:</p>
+<p>patch <code>hexo-asset-image</code>, followed by <code>hexo clean</code>, <code>hexo generate</code>. Copy <code>imgs.md</code> folder to <code>public/</code> and finally <code>hexo deploy</code>.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cd</span> <span class="string">&quot;$&#123;GITHUB_WORKSPACE&#125;&quot;</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-deployer-git</span> <span class="string">--save</span></span><br><span class="line"><span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-asset-image</span> <span class="string">--save</span></span><br><span class="line"><span class="string">chmod</span> <span class="string">a+x</span> <span class="string">script/fix-hexo-image.sh</span></span><br><span class="line"><span class="string">script/fix-hexo-image.sh</span> <span class="string">js</span>          </span><br><span class="line"><span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"><span class="string">script/fix-hexo-image.sh</span> <span class="string">pics</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>My full modified <code>hexo-asset-image/index.js</code> for reference, save it as <code>hexo-asset-image-index.js</code> and put in <code>script</code> folder.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">&#x27;cheerio&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getPosition</span>(<span class="params">str, m, i</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> str.<span class="title function_">split</span>(m, i).<span class="title function_">join</span>(m).<span class="property">length</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;after_post_render&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> config = hexo.<span class="property">config</span>;</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  if(config.post_asset_folder)&#123;</span></span><br><span class="line"><span class="comment">    var link = data.permalink;</span></span><br><span class="line"><span class="comment">    var beginPos = getPosition(link, &#x27;/&#x27;, 3) + 1;</span></span><br><span class="line"><span class="comment">    var appendLink = &#x27;&#x27;;</span></span><br><span class="line"><span class="comment">    // In hexo 3.1.1, the permalink of &quot;about&quot; page is like &quot;.../about/index.html&quot;.</span></span><br><span class="line"><span class="comment">    // if not with index.html endpos = link.lastIndexOf(&#x27;.&#x27;) + 1 support hexo-abbrlink</span></span><br><span class="line"><span class="comment">    if(/.*\/index\.html$/.test(link)) &#123;</span></span><br><span class="line"><span class="comment">      // when permalink is end with index.html, for example 2019/02/20/xxtitle/index.html</span></span><br><span class="line"><span class="comment">      // image in xxtitle/ will go to xxtitle/index/</span></span><br><span class="line"><span class="comment">      appendLink = &#x27;index/&#x27;;</span></span><br><span class="line"><span class="comment">      var endPos = link.lastIndexOf(&#x27;/&#x27;);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    else &#123;</span></span><br><span class="line"><span class="comment">      var endPos = link.lastIndexOf(&#x27;.&#x27;);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    link = link.substring(beginPos, endPos) + &#x27;/&#x27; + appendLink;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> link = <span class="string">&#x27;pics/imgs.md/&#x27;</span>;</span><br><span class="line">    <span class="keyword">var</span> toprocess = [<span class="string">&#x27;excerpt&#x27;</span>, <span class="string">&#x27;more&#x27;</span>, <span class="string">&#x27;content&#x27;</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; toprocess.<span class="property">length</span>; i++)&#123;</span><br><span class="line">      <span class="keyword">var</span> key = toprocess[i];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> $ = cheerio.<span class="title function_">load</span>(data[key], &#123;</span><br><span class="line">        <span class="attr">ignoreWhitespace</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">xmlMode</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">lowerCaseTags</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">decodeEntities</span>: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">&#x27;img&#x27;</span>).<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> ($(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>))&#123;</span><br><span class="line">          <span class="comment">// For windows style path, we replace &#x27;\&#x27; to &#x27;/&#x27;.</span></span><br><span class="line">          <span class="keyword">var</span> src = $(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>).<span class="title function_">replace</span>(<span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">          <span class="keyword">if</span>(!(<span class="regexp">/http[s]*.*|\/\/.*/</span>.<span class="title function_">test</span>(src)</span><br><span class="line">            || <span class="regexp">/^\s+\//</span>.<span class="title function_">test</span>(src)</span><br><span class="line">            || <span class="regexp">/^\s*\/(uploads|images)\//</span>.<span class="title function_">test</span>(src))) &#123;</span><br><span class="line">            <span class="comment">// For &quot;about&quot; page, the first part of &quot;src&quot; can&#x27;t be removed.</span></span><br><span class="line">            <span class="comment">// In addition, to support multi-level local directory.</span></span><br><span class="line">            <span class="keyword">var</span> linkArray = link.<span class="title function_">split</span>(<span class="string">&#x27;/&#x27;</span>).<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">elem</span>)&#123;</span><br><span class="line">              <span class="keyword">return</span> elem != <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">var</span> srcArray = src.<span class="title function_">split</span>(<span class="string">&#x27;/&#x27;</span>).<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">elem</span>)&#123;</span><br><span class="line">              <span class="keyword">return</span> elem != <span class="string">&#x27;&#x27;</span> &amp;&amp; elem != <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">if</span>(srcArray.<span class="property">length</span> &gt; <span class="number">1</span>)</span><br><span class="line">              srcArray.<span class="title function_">shift</span>();</span><br><span class="line">            src = srcArray.<span class="title function_">join</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line"></span><br><span class="line">            $(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, config.<span class="property">root</span> + link + src);</span><br><span class="line">            <span class="variable language_">console</span>.<span class="property">info</span>&amp;&amp;<span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&quot;update link as:--&gt;&quot;</span>+config.<span class="property">root</span> + link + src);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="property">info</span>&amp;&amp;<span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&quot;no src attr, skipped...&quot;</span>);</span><br><span class="line">          <span class="variable language_">console</span>.<span class="property">info</span>&amp;&amp;<span class="variable language_">console</span>.<span class="title function_">info</span>($(<span class="variable language_">this</span>));</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] = $.<span class="title function_">html</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/markdown/" rel="tag"><i class="fa fa-tag"></i> markdown</a>
+              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/08/29/fix-media-key-in-logitech-omm/" rel="next" title="Fix Media Key in Logitech OMM(onboard memory manager)">
+                  Fix Media Key in Logitech OMM(onboard memory manager) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

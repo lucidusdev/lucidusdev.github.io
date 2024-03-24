@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lucidusdev.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="This is a stupid feature -- so stupid that Google decided to remove it in Android 11 -- and Oneplus decided to &quot;forward port&quot; it to Android 11. I think it&#39;s finally gone in Android 12. Y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Patch Youtube Music to Remove Fullscreen Lockscreen Cover">
+<meta property="og:url" content="https://lucidusdev.github.io/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="This is a stupid feature -- so stupid that Google decided to remove it in Android 11 -- and Oneplus decided to &quot;forward port&quot; it to Android 11. I think it&#39;s finally gone in Android 12. Y">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-01-23T07:36:50.000Z">
+<meta property="article:modified_time" content="2024-01-23T07:36:50.000Z">
+<meta property="article:author" content="lucidusdev@github">
+<meta property="article:tag" content="android">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lucidusdev.github.io/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lucidusdev.github.io/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/","path":"2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/","title":"Patch Youtube Music to Remove Fullscreen Lockscreen Cover"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Patch Youtube Music to Remove Fullscreen Lockscreen Cover | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Patch"><span class="nav-number">1.</span> <span class="nav-text">Patch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-it-works"><span class="nav-number">2.</span> <span class="nav-text">How it works</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lucidusdev@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lucidusdev.github.io/2024/01/23/Patch-Youtube-Music-to-Remove-Fullscreen-Lockscreen-Cover/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lucidusdev@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Patch Youtube Music to Remove Fullscreen Lockscreen Cover | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Patch Youtube Music to Remove Fullscreen Lockscreen Cover
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-22 23:36:50" itemprop="dateCreated datePublished" datetime="2024-01-22T23:36:50-08:00">2024-01-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>This is a stupid feature -- so stupid that Google decided to remove it in Android 11 -- and Oneplus decided to &quot;forward port&quot; it to Android 11. I think it&#39;s finally gone in Android 12.</p>
+<p>You can check the creepy screenshot in the <a target="_blank" rel="noopener" href="https://www.reddit.com/r/oneplus/comments/we9u01/disable_album_cover_as_lockscreen_possible/">Reddit post</a>.</p>
+<span id="more"></span>
+
+<p>It&#39;s also a <a target="_blank" rel="noopener" href="https://github.com/ReVanced/revanced-patches/issues/1519">requested feature</a> for Revanced but no update from developers yet. </p>
+<h3 id="Patch"><a href="#Patch" class="headerlink" title="Patch"></a>Patch</h3><p>A quick note for getting this along with Revanced(obviously I need other patches)</p>
+<ol>
+<li><p>Patch YT Music in Revanced Manager as usual and install as mounted. It&#39;s an Oneplus(stock rom) issue so no need for MicroG.</p>
+</li>
+<li><p>Copy the patched apk<br><code>/data/adb/revanced/com.google.android.apps.youtube.music/base.apk</code><br>to PC.</p>
+</li>
+<li><p>Use <a target="_blank" rel="noopener" href="https://apktool.org/">APKTOOL</a> to unpack, modify the smali and repack.<br>To patch the smail, find <code>anor.smali </code> in <code>smali_classes2</code>  folder.<br><strong>Note</strong>, the exact file name may subject to change, in the future, search <code>&quot;android.media.metadata.ALBUM_ART&quot;</code>, there should be a function for setting up various meta fields. Patch it to skip &quot;ALBUM_ART&quot;, which making it NULL, and, disable lockscreen cover. </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">   const-string v2, &quot;android.media.metadata.ALBUM&quot;</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v1, v2, v0&#125;, Lhe;-&gt;e(Ljava/lang/String;Ljava/lang/String;)V</span><br><span class="line"></span><br><span class="line">    :cond_0</span><br><span class="line">    iget-object v0, p0, Laonr;-&gt;h:Laomy;</span><br><span class="line"></span><br><span class="line">    iget-object v0, v0, Laomy;-&gt;r:Landroid/graphics/Bitmap;</span><br><span class="line">     </span><br><span class="line">    </span><br><span class="line">    #if-eqz v0, :cond_1</span><br><span class="line">    #&gt;&gt;&gt;&gt;&gt;&gt;change if-eqz v0 to goto&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><br><span class="line">    goto :cond_1</span><br><span class="line"></span><br><span class="line">    const-string v2, &quot;android.media.metadata.ALBUM_ART&quot;</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;v1, v2, v0&#125;, Lhe;-&gt;b(Ljava/lang/String;Landroid/graphics/Bitmap;)V</span><br><span class="line"></span><br><span class="line">    :cond_1</span><br><span class="line">    iget-object v0, p0, Laonr;-&gt;k:Laons;</span><br><span class="line"></span><br><span class="line">    iget-object v2, p0, Laonr;-&gt;h:Laomy;</span><br><span class="line"></span><br><span class="line">    invoke-interface &#123;v0, v1, v2&#125;, Laons;-&gt;f(Lhe;Laomy;)V</span><br><span class="line"></span><br><span class="line">    return-object v1</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>Sign the apk with <a target="_blank" rel="noopener" href="https://developer.android.com/tools/apksigner">apksigner</a>. This must be signed, can use own key but can&#39;t unsigned or &quot;reuse&quot; original sign. </p>
+</li>
+<li><p>Name the new apk as &quot;base.apk&quot; and put it back, overwrite <code>/data/adb/revanced/com.google.android.apps.youtube.music/base.apk</code></p>
+</li>
+<li><p>Force stop Youtube Music and reopen. The change should take effect then.</p>
+</li>
+</ol>
+<p><strong>This doesn&#39;t affect the small icon shown in pulldown or lockscreen, so everything is good now.</strong></p>
+<h3 id="How-it-works"><a href="#How-it-works" class="headerlink" title="How it works"></a>How it works</h3><p>In Android <a target="_blank" rel="noopener" href="https://android.googlesource.com/platform/prebuilts/fullsdk/sources/android-30/+/refs/heads/androidx-benchmark-release/com/android/systemui/statusbar/NotificationMediaManager.java">source code</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Bitmap</span> <span class="variable">artworkBitmap</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">      <span class="keyword">if</span> (mediaMetadata != <span class="literal">null</span> &amp;&amp; !mKeyguardBypassController.getBypassEnabled()) &#123;</span><br><span class="line">          artworkBitmap = mediaMetadata.getBitmap(MediaMetadata.METADATA_KEY_ART);</span><br><span class="line">          <span class="keyword">if</span> (artworkBitmap == <span class="literal">null</span>) &#123;</span><br><span class="line">              artworkBitmap = mediaMetadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="type">NotificationEntry</span> <span class="variable">entry</span> <span class="operator">=</span> mEntryManager</span><br><span class="line">              .getActiveNotificationUnfiltered(mMediaNotificationKey);</span><br><span class="line">      <span class="keyword">if</span> (entry != <span class="literal">null</span>) &#123;</span><br><span class="line">          mMediaPlayer.updateControls(entry, getMediaIcon(), mediaMetadata);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          mMediaPlayer.clearControls();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// Process artwork on a background thread and send the resulting bitmap to</span></span><br><span class="line">      <span class="comment">// finishUpdateMediaMetaData.</span></span><br><span class="line">      <span class="keyword">if</span> (metaDataChanged) &#123;</span><br><span class="line">          <span class="keyword">for</span> (AsyncTask&lt;?, ?, ?&gt; task : mProcessArtworkTasks) &#123;</span><br><span class="line">              task.cancel(<span class="literal">true</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          mProcessArtworkTasks.clear();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (artworkBitmap != <span class="literal">null</span> &amp;&amp; !Utils.useQsMediaPlayer(mContext)) &#123;</span><br><span class="line">          mProcessArtworkTasks.add(<span class="keyword">new</span> <span class="title class_">ProcessArtworkTask</span>(<span class="built_in">this</span>, metaDataChanged,</span><br><span class="line">                  allowEnterAnimation).execute(artworkBitmap));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          finishUpdateMediaMetaData(metaDataChanged, allowEnterAnimation, <span class="literal">null</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>Bitmap is loaded from <code>MediaMetadata.METADATA_KEY_ART</code> and <code>MediaMetadata.METADATA_KEY_ALBUM_ART</code>, <code>mProcessArtworkTasks.add</code> is called to update the lockscreen background. </p>
+<p>In YT Music, <code>android.media.metadata.ART</code> is unused  only <code>android.media.metadata.ALBUM_ART</code>,  a NULL value will disable the lockscreen background. For other apps with similar issue might need to patch both fields. Another options is to patch <code>SYSTEMUI.apk</code> , making a Magisk module for a system-wide fix.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/android/" rel="tag"><i class="fa fa-tag"></i> android</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/01/22/debugging-javascript-keyboardevent-properites/" rel="prev" title="Debugging Javascript KeyboardEvent Properites">
+                  <i class="fa fa-angle-left"></i> Debugging Javascript KeyboardEvent Properites
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/01/change-carrier-name-in-android-with-root/" rel="next" title="Change Carrier Name In Android With Root">
+                  Change Carrier Name In Android With Root <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lucidusdev@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lucidusdev/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy","strict":1}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="R_UjqDntG2b4wAUM_NO7kIewfMXFdFEq1uDXwPnEosQ">
+  <meta name="msvalidate.01" content="20AEB7AF5511D72D56D2783CF09B38E2">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"lexr1.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":320},"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Recently setup owntone music server on OpenWrt 25.12.4, ran into lots problems and kept this as record.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Owntone Music Server on OpenWRT">
+<meta property="og:url" content="https://lexr1.github.io/2026/06/03/owntone-music-server-on-openwrt/index.html">
+<meta property="og:site_name" content="Random Bits...">
+<meta property="og:description" content="Recently setup owntone music server on OpenWrt 25.12.4, ran into lots problems and kept this as record.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-03T02:16:01.000Z">
+<meta property="article:modified_time" content="2026-06-05T02:16:01.000Z">
+<meta property="article:author" content="lexr1@github">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="openwrt">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://lexr1.github.io/2026/06/03/owntone-music-server-on-openwrt/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://lexr1.github.io/2026/06/03/owntone-music-server-on-openwrt/","path":"2026/06/03/owntone-music-server-on-openwrt/","title":"Owntone Music Server on OpenWRT"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Owntone Music Server on OpenWRT | Random Bits...</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Random Bits...</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Native-binary"><span class="nav-number">1.</span> <span class="nav-text">Native binary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-run"><span class="nav-number">2.</span> <span class="nav-text">Docker &#x2F;run</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chromecast-drops-connection"><span class="nav-number">3.</span> <span class="nav-text">Chromecast drops connection</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Keep-airconnect-connected"><span class="nav-number">3.1.</span> <span class="nav-text">Keep airconnect connected</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Home-Assistant-Integration"><span class="nav-number">4.</span> <span class="nav-text">Home Assistant &quot;Integration&quot;</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lexr1@github</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lexr1.github.io/2026/06/03/owntone-music-server-on-openwrt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lexr1@github">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Owntone Music Server on OpenWRT | Random Bits...">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Owntone Music Server on OpenWRT
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-06-02 19:16:01" itemprop="dateCreated datePublished" datetime="2026-06-02T19:16:01-07:00">2026-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-04 19:16:01" itemprop="dateModified" datetime="2026-06-04T19:16:01-07:00">2026-06-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Recently setup <a target="_blank" rel="noopener" href="https://owntone.github.io/owntone-server/">owntone music server</a> on OpenWrt 25.12.4, ran into lots problems and kept this as record.</p>
+<span id="more"></span>
+
+<h3 id="Native-binary"><a href="#Native-binary" class="headerlink" title="Native binary"></a>Native binary</h3><p>Owntone is readily available on OpenWrt , and can be installed with</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add owntone</span><br></pre></td></tr></table></figure>
+
+<p>However it doesn&#39;t play well with OpenWrt. It can&#39;t start with &quot;owntone&quot; user, even after proper permissions, chown chmod etc.., Got it running after run as &quot;root&quot; but still unusable, random API error 400 here and there.</p>
+<h3 id="Docker-run"><a href="#Docker-run" class="headerlink" title="Docker &#x2F;run"></a>Docker &#x2F;run</h3><p>Official <a target="_blank" rel="noopener" href="https://github.com/owntone/owntone-container">docker image</a> is also available in arm and x64(no MIPS) and I tried the arm64 image on my router. It worked fine on first launch, no weird permission errors and everything was good. Did few <code>docker start/stop owntone</code>  while changing settings, all went well. And...</p>
+<p>the container failed to start after router reboot. </p>
+<p>Rerun with</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start owntone &amp;&amp; docker attach owntone</span><br></pre></td></tr></table></figure>
+
+<p>It started <code>avahi-daemon</code> successfully then just stalled?? no error, no more progress just stuck there. </p>
+<p>But once I deleted and recreated the container,  <code>docker compose up</code>, it worked again...until next reboot.</p>
+<p>I can&#39;t find any report on this and later found another unofficial docker image. Tried it and the same problem: works fine on first launch then fails later. But this time, it gave an error message</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to start message bus: The pid file &quot;/run/dbus/dbus.pid&quot; exists, if the message bus is not running, remove this file</span><br></pre></td></tr></table></figure>
+
+<p>I modified the init script by adding a line</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[ -e /run/dbus/dbus.pid ]] &amp;&amp; rm -f /run/dbus/dbus.pid</span><br></pre></td></tr></table></figure>
+
+<p>and it worked, even after reboot!</p>
+<p>This gave me some good hint, so now back to the official image. Seems that some files are left from previous session and &quot;block&quot; new session.</p>
+<p>The <code>/run</code> folder should be <code>tmpfs</code>, guarantee a fresh start on each boot, but on docker, these files were kept by default thus the bug. I still don&#39;t understand why it works with <code>docker start/stop</code> but fails after host reboot and why this problem is only on (my) OpenWrt.</p>
+<p>Anyway the fix is quite simple.</p>
+<p>With docker compose, add below to <code>compose.yaml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmpfs:</span><br><span class="line">  - /run:size=1M,mode=1777</span><br></pre></td></tr></table></figure>
+
+<p>1M is more than enough. This totally fixed the problem.</p>
+<h3 id="Chromecast-drops-connection"><a href="#Chromecast-drops-connection" class="headerlink" title="Chromecast drops connection"></a>Chromecast drops connection</h3><p>I have a Chromecast speaker(a Lenovo clock actually). Ran into another problem that the speaker quietly stopped playing after 20-30 minutes.  This seems to be a common issue and was <a target="_blank" rel="noopener" href="https://github.com/owntone/owntone-server/issues/1516">reported</a>. The fix, as suggested, is to use <a target="_blank" rel="noopener" href="https://github.com/philippe44/airconnect">airconnect</a> and set the speaker as an Airplay device, and no more interrupted streaming!  </p>
+<h4 id="Keep-airconnect-connected"><a href="#Keep-airconnect-connected" class="headerlink" title="Keep airconnect connected"></a>Keep airconnect connected</h4><p>airconnect may drop the speaker after long time idle. Restarting airconnect fixes it.</p>
+<p>A quick hack to check &amp; restart airconnect if it&#39;s not running(0% CPU Usage):</p>
+<ul>
+<li><p>Create an airconnect service file <code>/etc/init.d/airconnect</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh /etc/rc.common</span><br><span class="line"># SPDX-License-Identifier: GPL-2.0-only</span><br><span class="line">#</span><br><span class="line"># Copyright (C) 2013-2020 OpenWrt.org</span><br><span class="line"></span><br><span class="line">START=95</span><br><span class="line"></span><br><span class="line">start() &#123;</span><br><span class="line">    cd /opt/bin/aircast</span><br><span class="line">    /opt/bin/aircast/aircast-linux-aarch64-static -z</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">restart() &#123;</span><br><span class="line">    stop</span><br><span class="line">    start</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">stop() &#123;</span><br><span class="line">    killall aircast-linux-aarch64-static</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>enable the service.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/airconnect enable</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>Check airconnect CPU usage and restart if it&#39;s 0.0.<br>This requires full <code>top</code> from <code>procps-ng-top</code> package.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">cpu=$(top -b -d2 -n1  -p `pidof aircast-linux-aarch64-static` | tail -n1 | tr -s &#x27; &#x27; | awk &#x27;&#123;$1=$1&#125;1&#x27; | cut -d&#x27; &#x27; -f 7)</span><br><span class="line"></span><br><span class="line">if [ &quot;$cpu&quot; = &quot;0.0&quot; ]; then</span><br><span class="line">    echo $cpu: restart airconnect</span><br><span class="line">    /etc/init.d/airconnect  restart</span><br><span class="line">else</span><br><span class="line">    echo $cpu: keep airconnect</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<p> put it in <code>crontab</code> and run hourly.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">30 * * * * /opt/bin/cron/checkaircast.sh</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Home-Assistant-Integration"><a href="#Home-Assistant-Integration" class="headerlink" title="Home Assistant &quot;Integration&quot;"></a>Home Assistant &quot;Integration&quot;</h3><p>Originally set music assistant server but seems overly complicated for my small music collection. HA(docker image in same OpenWrt router) has Owntone integration and can detect the server. </p>
+<p>Owntone can be controlled with builtin music card in HA but it&#39;s very limited, can&#39;t even view the playlist.  I later settled with Owntone&#39;s own web UI on &quot;webpage&quot; card and embedded the player url(<code>http://192.168.1.100:3689/#/player</code>) on HA dashboard.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+              <a href="/tags/openwrt/" rel="tag"><i class="fa fa-tag"></i> openwrt</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/26/omm-py-logitech-onboard-memory-manager-in-python/" rel="prev" title="OMM.py: Logitech Onboard Memory Manager in python and beyond">
+                  <i class="fa fa-angle-left"></i> OMM.py: Logitech Onboard Memory Manager in python and beyond
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/06/05/home-assistant-docker-in-openwrt-host/" rel="next" title="Home Assistant Docker In OpenWrt Host">
+                  Home Assistant Docker In OpenWrt Host <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">lexr1@github</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"lexr1/blog-comment","repo_id":"R_kgDOKMrLNA","category":"Announcements","category_id":"DIC_kwDOKMrLNM4CY7y9","mapping":"title","strict":1,"reactions_enabled":1,"emit_metadata":1,"theme":"light","lang":"en","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
